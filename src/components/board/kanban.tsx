@@ -1,19 +1,6 @@
-type Status = "to do" | "in progress" | "done";
+import type { Task, Status } from "../../types";
 
-interface Task {
-	name: string;
-	status: Status;
-}
-
-export const Kanban = () => {
-	const tasks: Task[] = [
-		{name: "to do 1", status: "to do"},
-		{name: "to do 2", status: "to do"},
-		{name: "prog 1", status: "in progress"},
-		{name: "done 1", status: "done"},
-		{name: "done 2", status: "done"},
-		{name: "done 3", status: "done"},
-	];
+export const Kanban = ({ tasks }: { tasks: Task[] }) => {
 	const filteredList = (byStatus: Status) =>
 	{
 		 const list: Task[] = tasks.filter((task) => (task.status === byStatus));

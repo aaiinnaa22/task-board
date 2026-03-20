@@ -1,9 +1,5 @@
 import { useState } from "react";
-
-export interface Board {
-	name: string;
-	id: string;
-}
+import type { Board } from "../types";
 
 export type UpdateBoardName = (id: string, newName: string) => void;
 export type AddBoard = () => void;
