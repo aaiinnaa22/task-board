@@ -1,4 +1,4 @@
-import { Board } from "./components/board/board"
+import { TaskBoard } from "./components/board/taskBoard"
 import { Sidebar } from "./components/sidebar/sidebar"
 import { Topbar } from "./components/topbar"
 import { useBoards } from "./hooks/useBoards"
@@ -8,8 +8,10 @@ function App() {
 	const {
 		boards,
 		editingBoardId,
+		currentBoard,
+		setCurrentBoard,
 		addBoard,
-		updateBoardName
+		updateBoardName,
 	} = useBoards();
 
 	return (
@@ -20,9 +22,16 @@ function App() {
 					onAddBoard={addBoard}
 					onUpdateBoardName={updateBoardName}
 					boards={boards}
-					editingBoardId={editingBoardId}/>
+					editingBoardId={editingBoardId}
+					onSetCurrentBoard={setCurrentBoard}
+					currentBoard={currentBoard}/>
 				<div className="flex-1">
-				<Board/>
+					{currentBoard
+						? <TaskBoard currentBoard={currentBoard}/>
+						: <div className="w-full h-full flex items-center justify-center">
+							<h2 className="font-bold text-xl text-gray-400">Welcome to TaskBoard!</h2>
+						</div>
+					}
 				</div>
 			</div>
 		</div>
